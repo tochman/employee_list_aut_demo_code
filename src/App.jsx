@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EmployeeList from './components/EmployeeList'
 
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
           <h1>Employee list</h1>
         </section>
         <section name="main">
-        
+          <EmployeeList />
         </section>
       </>
     );
