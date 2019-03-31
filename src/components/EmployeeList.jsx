@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { List, Image } from 'semantic-ui-react'
+
 import axios from 'axios'
 
 class EmployeeList extends Component {
@@ -12,7 +14,6 @@ class EmployeeList extends Component {
 
   async fetchEmployees() {
     let employees = await axios.get('https://reqres.in/api/users?per_page=5')
-    debugger
     this.setState({ employees: employees.data.data })
   }
   render() {
@@ -20,16 +21,26 @@ class EmployeeList extends Component {
     if (this.state.employees) {
       employeeList = this.state.employees.map(employee => {
         return (
-          <li key={employee.id}>{`${employee.first_name} ${employee.last_name}`}</li>
+          <div key={employee.first_name}>
+            <List.Item >
+              <Image avatar src={employee.avatar} />
+              <List.Content>
+                <List.Header as='a'>{`${employee.first_name} ${employee.last_name}`}</List.Header>
+                <List.Description>
+                  {`${employee.first_name}@email.com`}
+                </List.Description>
+              </List.Content>
+            </List.Item>
+          </div>
         )
       })
     }
 
     return (
       <>
-        <ul>
+        <List>
           {employeeList}
-        </ul>
+        </List>
       </>
     );
   }

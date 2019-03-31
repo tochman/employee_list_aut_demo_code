@@ -7,7 +7,7 @@ describe('Display a list of 5 employees', () => {
     cy.get('section[name="header"]')
       .should('contain', 'Employee list')
     cy.get('section[name="main"]').within(() => {
-      cy.get('li')
+      cy.get('div[role="listitem"]')
         .should('have.length', 5)
     })
   })
